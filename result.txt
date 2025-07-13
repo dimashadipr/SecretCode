@@ -1,3 +1,39 @@
-mac:02:00:00:00:00:00|wk:NONE0|platform:1|rid:02297DDB8424F0C8042CDCA9EF0A20B9|name:nxfickylow|cbits:1536|playerAge:25|token:RgR9iXG1pv305+Nbc0cRLO2wpAi7BwHA7T8pNrA5q53CqRBJWEcDazJPm/ip3WQ3gUSk+5a4w0nomuKvvpykuQVAXxx9zUPZAdfDuMjcT+jbatjXnp7CGP4mL7szCL6YEOp7Xys/pWEP8IPmA5FRWyGvgUdVBwzAJM5zaEhn+ambYDXHhH5tNytM15Ys2HimZsx0y4xmlgjfjNF0VUtilO9WyL6XkBHOKMhjMBex31bYUbvqJjBvHwHJ0GNEqAHdLk8gWdsKXZW5ZDFCujuXGp39RvimZlEv1TM9YmglNuWc+3gBXO3mgVq6wqr96707LngdbYkE4uNb8zh7nuS+gFfhHndjgZvtPR+1zyWyrom3p7cfhH9AIIaAihYqRniPN+LheWa0cw+dAbmBHD8UkC1lkrfe/smCPN1Owk6k22FaXOTPTVm/SGgAyHNcEGZwjkxBnSxagH88nE9+BsaQcJmZmtHrOUj6bkhaNtZTzyLP4T/hlCK181/15j+pnOZu|vid:64235C41-79E8-4FE5-B436-EDF8B117E652
-mac:02:00:00:00:00:00|wk:NONE0|platform:1|rid:022999E8D171A396056FBEA203CB2300|name:vivozjspy|cbits:1536|playerAge:25|token:RgR9iXG1pv305+Nbc0cRLBL3QuLnIknWDVuuu0bGPouAcuTuNx/pOAO2646LaCjJEuaww8Rq8V2qOwU65uAlLkP+1s7AFSsd5DgDLciv1AWv7gnFsP4Gd6zhZJUJpWoe8yf9D4qmtp5GUTYyumnI0+fla5qyawikLLUdMfdIL3gqrkGR+37ATLYSt+KNpDnxedpCHJHALVWWIM3/WwSTQ/z3T+lLkBXiytbOyJTESw3sBeidDCGbZqn2Pi0ANXBekBxwKCTzIC1flG2waH1iDIfZke11yI5XMa5AlUkp1Z8t4tp2SK45EVPWNbLmaJVUk8cNWDgjJhbu0H2gDXA8+qbBd0C5JIs/Gq2yBev2pWeG1NbttTSFxpRn5J+9+euUPJ3B9FMeFjqv68uSLZzctOcrqBpxQ92o/k/0aPlQcmiDJzGn9eyo4x0qVG3Xpsv0NzAmJ6e5WZwyml9afpL1nNFp6JO2RWCGeUS+6g6pdSoKeu4RivytAwkEVeJZyLVS|vid:369D0582-A966-4E24-917B-F8044298522C
-mac:02:00:00:00:00:00|wk:NONE0|platform:1|rid:022999FB197D5B120A785D2E3FB2557C|name:oddcobcks|cbits:1536|playerAge:25|token:RgR9iXG1pv305+Nbc0cRLLwFPfeOeultNPJ6jmyKHdn0NjhRiO+MlkHJNDyenv4yxp5onTD4Vfn+XFwhNWawu9rqN4hZs6SzErdq2w+uNPuQERcSKPyeCWzUTt0Zh619QG5qnh1BIJ0Uy0PJ+WHK/f/rT5szuRFprJeupnCRPwdO/mMCuqpQK8OaewEX+QEDi4+ZYUv0EGV9TcK4CS50QPnMO9cZUAeud5bM/YoyDmUrErK+wKhSppsrpvwMaWQIkWQJpiqpsENkolZKUhGaaW26q3HTF41vL5yn8/SDfAFQR/r/pUtVqhGrteSCwtnW3yH4QLgOkg8XCUTTOyEQaPCCG4Jh1Aym0hpVlR1F26R1sXLlvqxzOt+HfxxpNsl8uE7bQuXL4s8wIPHke4Cc23qh09P7qEU/HSSSI8Q+CmyheOKVzEksgwFCeAm9pgnyUEByCAnbk2h51togsyW2qjFQjDJGpQhLJnhmjTB00QDPENIo73Ez6/XjTEHD/uqF|vid:4C7FBCDD-D9D4-4B07-BC89-1B187FAABCC0
+local accounts = [[
+email@gmail.com|xxx:xxx:xxx:xxx
+]]
+
+for account in accounts:gmatch("[^\n]+") do
+    local email, sisa = account:match("([^|]+)|(.+)")
+
+    if email and sisa then
+        local mac, rid, wk, ltoken = sisa:match("([^|]+):([^|]+):([^|]+):(.+)")
+        if mac and rid and wk and ltoken then
+            local details = {
+                ["display"] = email,
+                ["secret"] = email,
+                ["name"] = ltoken,
+                ["rid"] = rid,
+                ["mac"] = mac,
+                ["wk"] = wk,
+                ["platform"] = 0,
+            }
+            local bot = addBot(details)
+            bot:getConsole().enabled = true
+            sleep(3)
+        end
+    else
+        local mac, rid, wk, ltoken = sisa:match("([^|]+):([^|]+):([^|]+):(.+)")
+        if mac and rid and wk and ltoken then
+            local details = {
+                ["name"] = ltoken,
+                ["rid"] = rid,
+                ["mac"] = mac,
+                ["wk"] = wk,
+                ["platform"] = 0,
+            }
+            local bot = addBot(details)
+            bot:getConsole().enabled = true
+            sleep(3)
+        end
+    end
+end
